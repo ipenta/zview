@@ -1,0 +1,13 @@
+[{
+  "name": "dashboard",
+  "path": ""
+}, {
+  "name": "analysis",
+  "children": [{
+    "name": "用户分析",
+    "path": "/analysis/user"
+  }, {
+    "name": "档案分析",
+    "path": "/analysis/profile"
+  }]
+}]
