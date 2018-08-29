@@ -4,10 +4,10 @@ import menus from './menus.json'
 
 Vue.use(Router)
 
-const registerRoutes = function(menus = [], routes = []) {
+const generateRoutesFromMenu = function(menus = [], routes = []) {
   menus.forEach(function(item) {
     if (item.children) {
-      registerRoutes(item.children, routes)
+      generateRoutesFromMenu(item.children, routes)
     } else if (item.path !== undefined) {
       routes.push({
         path: item.path,
@@ -18,7 +18,6 @@ const registerRoutes = function(menus = [], routes = []) {
   })
   return routes
 }
-console.log(registerRoutes(menus))
 
 export default new Router({
   routes: [{
@@ -33,6 +32,6 @@ export default new Router({
   }, {
     path: '/',
     component: resolve => require(['@/views/support/layout.vue'], resolve),
-    children: registerRoutes(menus)
+    children: generateRoutesFromMenu(menus)
   }]
 })
