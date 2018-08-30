@@ -11,7 +11,6 @@ export default {
 </script>
 
 <style>
-@import 'bulma/css/bulma.min.css';
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

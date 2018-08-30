@@ -1,5 +1,5 @@
 <template lang="html">
-  <h2>changepwd</h2>
+  <h2>user/profile</h2>
 </template>
 
 <script>

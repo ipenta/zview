@@ -1,5 +1,5 @@
 <template lang="html">
-  <h2>analysis/user</h2>
+  <h2>user/detail</h2>
 </template>
 
 <script>
