@@ -1,5 +1,5 @@
 import axios from 'axios'
-import store from '../store'
+import store from '@/config/store'
 import { systemStatusHandler, customStatusHandler } from './utils'
 
 //  axios 配置
