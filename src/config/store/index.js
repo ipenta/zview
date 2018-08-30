@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import app from '@/app/module'
+import support from '@/support/module'
 
 Vue.use(Vuex)
 
@@ -10,7 +10,7 @@ let isDebugMode = process.env.NODE_ENV !== 'production'
 const store = new Vuex.Store({
   strict: isDebugMode,
   modules: {
-    app
+    support
   }
 })
 

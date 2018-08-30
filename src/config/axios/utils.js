@@ -1,5 +1,5 @@
 import { Message } from 'element-ui'
-import router from '../router'
+import router from '@/config/router'
 
 export function systemStatusHandler (response) {
   const data = response.data

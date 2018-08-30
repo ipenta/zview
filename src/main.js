@@ -2,8 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from '@/support/router'
-import store from '@/support/store'
+import router from '@/config/router'
+import store from '@/config/store'
 import 'normalize.css'
 
 Vue.config.productionTip = false

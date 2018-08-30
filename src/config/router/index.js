@@ -11,7 +11,7 @@ const generateRoutesFromMenu = function(menus = [], routes = []) {
       routes.push({
         path: item.path,
         name: (item.name === undefined ? item.path : item.name),
-        component: resolve => require(['@/compilation' + (item.path === '' ? '/dashboard' : item.path) + '/views/index.vue'], resolve)
+        component: resolve => require(['@/app' + (item.path === '' ? '/dashboard' : item.path) + '/views/index.vue'], resolve)
       })
     }
   })
@@ -33,16 +33,16 @@ const menus = [{
 export default new Router({
   routes: [{
     path: '/login',
-    component: resolve => require(['@/app/views/login.vue'], resolve)
+    component: resolve => require(['@/support/views/login.vue'], resolve)
   }, {
     path: '/register',
-    component: resolve => require(['@/app/views/register.vue'], resolve)
+    component: resolve => require(['@/support/views/register.vue'], resolve)
   }, {
     path: '/changepwd',
-    component: resolve => require(['@/app/views/changepwd.vue'], resolve)
+    component: resolve => require(['@/support/views/changepwd.vue'], resolve)
   }, {
     path: '/',
-    component: resolve => require(['@/app/views/layout.vue'], resolve),
+    component: resolve => require(['@/support/views/layout.vue'], resolve),
     children: generateRoutesFromMenu(menus)
   }]
 })
