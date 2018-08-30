@@ -33,16 +33,16 @@ const menus = [{
 export default new Router({
   routes: [{
     path: '/login',
-    component: resolve => require(['@/support/views/login.vue'], resolve)
+    component: resolve => require(['@/support/login/views/index.vue'], resolve)
   }, {
     path: '/register',
-    component: resolve => require(['@/support/views/register.vue'], resolve)
+    component: resolve => require(['@/support/register/views/index.vue'], resolve)
   }, {
-    path: '/changepwd',
-    component: resolve => require(['@/support/views/changepwd.vue'], resolve)
+    path: '/modifypwd',
+    component: resolve => require(['@/support/modifypwd/views/index.vue'], resolve)
   }, {
     path: '/',
-    component: resolve => require(['@/support/views/layout.vue'], resolve),
+    component: resolve => require(['@/support/layout/views/index.vue'], resolve),
     children: generateRoutesFromMenu(menus)
   }]
 })
