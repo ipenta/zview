@@ -20,7 +20,7 @@ export function systemStatusHandler(response) {
 export function customStatusHandler(response) {
   const data = response.data
   if (data.status === 'success') {
-    return data.data
+    return data
   } else {
     Message({ message: data.message, type: 'error' })
   }

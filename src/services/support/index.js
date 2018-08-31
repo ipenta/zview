@@ -1,10 +1,5 @@
-import * as API from './api'
-import axios from '@/config/axios'
+import authService from './auth'
 
-export function login(payload) {
-  return axios.post(API.LOGIN, payload)
-}
+const support = Object.assign({}, authService)
 
-export function register(payload) {
-  return axios.post(API.REGISTER, payload)
-}
+export default support

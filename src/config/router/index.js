@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '@/config/store'
 
 Vue.use(Router)
 
@@ -30,7 +31,7 @@ const menus = [{
   }]
 }]
 
-export default new Router({
+const router = new Router({
   routes: [{
     path: '/login',
     component: resolve => require(['@/views/support/login/index.vue'], resolve)
@@ -46,3 +47,16 @@ export default new Router({
     children: generateRoutesFromMenu(menus)
   }]
 })
+
+router.beforeEach((to, from, next) => {
+  if (store.getters['token'] !== '') {
+    next()
+  } else {
+    to.path === '/auth/login' || '/auth/register' ? next() : next({
+      path: '/auth/login',
+      query: { redirect: to.fullPath }
+    })
+  }
+})
+
+export default router

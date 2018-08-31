@@ -1,5 +1,5 @@
 <template lang="html">
-  <el-form ref="form" status-icon :model="form" :rules="formRules" class="logon-form" label-width="80px">
+  <el-form ref="form" status-icon :model="form" :rules="formRules" class="form-container" label-width="80px">
     <el-form-item prop="identifier">
       <el-input v-model="form.identifier" auto-complete="off">
         <template slot="prepend"><i class="iconfont icon-zhanghu"></i></template>
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="css">
-.logon-form {
+.form-container {
     position: absolute;
     left: 0;
     right: 0;
