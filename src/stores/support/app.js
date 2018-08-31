@@ -2,29 +2,35 @@ import supportService from '@/services/support'
 
 // ---------------------state----------------------------//
 const state = {
-  identifier: ''
+  identifier: '',
+  menus: []
 }
 // ---------------------getters--------------------------//
 const getters = {
-  identifier: state => state.identifier
+  identifier: state => state.identifier,
+  menus: state => state.menus
 }
 // ----------------------mutations----------------------------//
 const mutations = {
   'identifier': (state, identifier) => {
     localStorage.setItem('identifier', identifier)
     state.identifier = identifier
+  },
+  'menus': (state, menus) => {
+    state.menus = menus
   }
 }
 // ----------------------actions-----------------------------//
-const init = ({ commit, state }) => {
+const initApp = ({ commit, state }) => {
   supportService.getAuthInfo().then(result => {
     if (result.status === 'success') {
       commit('identifier', result.data.identifier)
+      commit('menus', result.data.menus)
     }
   })
 }
 
-const actions = { init: init }
+const actions = { initApp: initApp }
 // --------------------------------------------------//
 
 export default {
