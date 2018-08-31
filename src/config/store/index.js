@@ -1,19 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import actions from './actions'
-import getters from './getters'
+import supportStore from '@/stores/support'
 
 Vue.use(Vuex)
 
 let isDebugMode = process.env.NODE_ENV !== 'production'
 
-const store = new Vuex.Store({
-  strict: isDebugMode,
-  actions,
-  getters,
-  modules: {
-  }
-})
+const defaultStore = Object.assign({
+  strict: isDebugMode
+}, supportStore)
+
+console.log(defaultStore)
+
+const store = new Vuex.Store(defaultStore)
 
 export default store
