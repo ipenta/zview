@@ -13,7 +13,7 @@ const state = {
 
 // -------------------------------------------------//
 const getters = {
-  token: state => state.token
+  token: state => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViN2QxYjRiYjczN2I5MDAzYWVmYWM5ZCIsImlkZW50aWZpZXIiOiJ5aXllcm5AeWFob28uY29tIiwiaWF0IjoxNTM1NzAzNzIxfQ.PRSlhmTHxwAsjdLTES3VZ8PGtTZ8WXzES047liaS-ug'
 }
 
 // -------------------------------------------------//
@@ -34,7 +34,7 @@ const login = ({ commit, state }, payload) => {
 }
 
 const actions = {
-  login
+  login: login
 }
 
 export default {

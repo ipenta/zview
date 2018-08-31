@@ -11,8 +11,6 @@ const defaultStore = Object.assign({
   strict: isDebugMode
 }, supportStore)
 
-console.log(defaultStore)
-
 const store = new Vuex.Store(defaultStore)
 
 export default store
