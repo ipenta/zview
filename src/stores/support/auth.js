@@ -1,4 +1,4 @@
-import authService from '@/services/support'
+import supportService from '@/services/support'
 import router from '@/config/router'
 
 // -------------------------------------------------//
@@ -25,7 +25,7 @@ const mutations = {
 
 // -------------------------------------------------//
 const login = ({ commit, state }, payload) => {
-  return authService.login(payload).then(result => {
+  return supportService.login(payload).then(result => {
     if (result.status === 'success') {
       commit('token', result.data.token)
       router.push({'path': '/'})
@@ -34,16 +34,16 @@ const login = ({ commit, state }, payload) => {
 }
 
 const register = ({ commit, state }, payload) => {
-  return authService.register(payload).then(result => {
+  return supportService.register(payload).then(result => {
     if (result.status === 'success') {
-      router.push({'path': '/login'})
+      router.push({'path': '/auth/login'})
     }
   })
 }
 
 const logout = ({ commit, state }) => {
   commit('token', '')
-  router.push({'path': '/login'})
+  router.push({'path': '/auth/login'})
 }
 
 const actions = { login: login, register: register, logout: logout }

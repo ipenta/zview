@@ -33,13 +33,13 @@ const menus = [{
 
 const router = new Router({
   routes: [{
-    path: '/login',
+    path: '/auth/login',
     component: resolve => require(['@/views/support/login/index.vue'], resolve)
   }, {
-    path: '/register',
+    path: '/auth/register',
     component: resolve => require(['@/views/support/register/index.vue'], resolve)
   }, {
-    path: '/modifypwd',
+    path: '/auth/modifypwd',
     component: resolve => require(['@/views/support/modifypwd/index.vue'], resolve)
   }, {
     path: '/',
