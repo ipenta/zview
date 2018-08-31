@@ -1,8 +1,8 @@
-import * as supportService from '@/services/support'
+const supportService = require('@/services/support')
 
 describe('service.vue', () => {
-  it('should render correct contents', () => {
-    console.log(supportService)
+  test('should render correct contents', () => {
+
     const payload = {
       identity_type: 'email',
       identifier: 'yiyern@yahoo.com',

@@ -3,7 +3,6 @@ import router from '@/config/router'
 
 export function systemStatusHandler(response) {
   const data = response.data
-  console.log(data)
   // 根据返回的code值来做不同的处理(和后端约定)
   switch (response.code) {
     case 401:

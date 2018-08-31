@@ -11,7 +11,7 @@ const generateRoutesFromMenu = function(menus = [], routes = []) {
       routes.push({
         path: item.path,
         name: (item.name === undefined ? item.path : item.name),
-        component: resolve => require(['@/views' + (item.path === '' ? '/dashboard' : item.path) + '/index.vue'], resolve)
+        component: resolve => require(['@/views/app' + (item.path === '' ? '/dashboard' : item.path) + '/index.vue'], resolve)
       })
     }
   })
