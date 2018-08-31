@@ -1,18 +1,41 @@
-const state = {}
+import * as authService from '@/services/support'
+import router from '@/config/router'
 
-const getters = {}
-
-const actions = {
-  login({ commit, state }, payload) {
-    console.log(payload)
-    // return userService.findOne(payload).then(account => {
-    //   commit(types.SET_TOKEN, account.token)
-    //   commit(types.SET_EMAIL, account.email)
-    // })
+// -------------------------------------------------//
+const state = {
+  get token() {
+    return localStorage.getItem('token')
+  },
+  set token(token) {
+    localStorage.setItem('token', token)
   }
 }
 
-const mutations = {}
+// -------------------------------------------------//
+const getters = {
+  token: state => state.token
+}
+
+// -------------------------------------------------//
+const mutations = {
+  'token': (state, token) => {
+    state.token = token
+  }
+}
+
+// -------------------------------------------------//
+const login = ({ commit, state }, payload) => {
+  return authService.login(payload).then(result => {
+    if (result.status === 'success') {
+      commit('token', result.data.token)
+      router.push({'path': '/'})
+    }
+  })
+}
+
+const actions = {
+  login
+}
 
 export default {
   state,
