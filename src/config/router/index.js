@@ -4,6 +4,21 @@ import store from '@/config/store'
 
 Vue.use(Router)
 
+const router = new Router()
+
+router.beforeEach((to, from, next) => {
+  if (store.getters['token'] !== null) {
+    next()
+  } else {
+    to.path === ('/auth/login' || '/auth/register') ? next() : next({
+      path: '/auth/login',
+      query: {
+        redirect: to.fullPath
+      }
+    })
+  }
+})
+
 const generateRoutesFromMenu = function(menus = [], routes = []) {
   menus.forEach(function(item) {
     if (item.children) {
@@ -19,44 +34,21 @@ const generateRoutesFromMenu = function(menus = [], routes = []) {
   return routes
 }
 
-const menus = [{
-  path: '',
-  name: 'dashboard'
+const defaultRoutes = [{
+  path: '/auth/login',
+  component: resolve => require(['@/views/support/login/index.vue'], resolve)
 }, {
-  name: 'user',
-  children: [{
-    path: '/user/profile'
-  }, {
-    path: '/user/detail'
-  }]
+  path: '/auth/register',
+  component: resolve => require(['@/views/support/register/index.vue'], resolve)
+}, {
+  path: '/auth/modifypwd',
+  component: resolve => require(['@/views/support/modifypwd/index.vue'], resolve)
+}, {
+  path: '/',
+  component: resolve => require(['@/views/support/layout/index.vue'], resolve),
+  children: generateRoutesFromMenu(store.getters.menus)
 }]
 
-const router = new Router({
-  routes: [{
-    path: '/auth/login',
-    component: resolve => require(['@/views/support/login/index.vue'], resolve)
-  }, {
-    path: '/auth/register',
-    component: resolve => require(['@/views/support/register/index.vue'], resolve)
-  }, {
-    path: '/auth/modifypwd',
-    component: resolve => require(['@/views/support/modifypwd/index.vue'], resolve)
-  }, {
-    path: '/',
-    component: resolve => require(['@/views/support/layout/index.vue'], resolve),
-    children: generateRoutesFromMenu(menus)
-  }]
-})
-
-router.beforeEach((to, from, next) => {
-  if (store.getters['token'] !== '') {
-    next()
-  } else {
-    to.path === '/auth/login' || '/auth/register' ? next() : next({
-      path: '/auth/login',
-      query: { redirect: to.fullPath }
-    })
-  }
-})
+router.addRoutes(defaultRoutes)
 
 export default router

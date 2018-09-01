@@ -1,14 +1,10 @@
 import supportService from '@/services/support'
 import router from '@/config/router'
+import { SET_TOKEN, REMOVE_TOKEN } from '@/stores/mutation-types'
 
 // -------------------------------------------------//
 const state = {
-  get token() {
-    return localStorage.getItem('token')
-  },
-  set token(token) {
-    localStorage.setItem('token', token)
-  }
+  token: localStorage.getItem('token')
 }
 
 // -------------------------------------------------//
@@ -18,8 +14,13 @@ const getters = {
 
 // -------------------------------------------------//
 const mutations = {
-  'token': (state, token) => {
+  [SET_TOKEN]: (state, token) => {
     state.token = token
+    localStorage.setItem('token', token)
+  },
+  [REMOVE_TOKEN]: (state) => {
+    state.token = ''
+    localStorage.removeItem('token')
   }
 }
 
@@ -27,7 +28,7 @@ const mutations = {
 const login = ({ commit, state }, payload) => {
   return supportService.login(payload).then(result => {
     if (result.status === 'success') {
-      commit('token', result.data.token)
+      commit('SET_TOKEN', result.data.token)
       router.push({'path': '/'})
     }
   })
@@ -42,7 +43,7 @@ const register = ({ commit, state }, payload) => {
 }
 
 const logout = ({ commit, state }) => {
-  commit('token', '')
+  commit('REMOVE_TOKEN')
   router.push({'path': '/auth/login'})
 }
 
