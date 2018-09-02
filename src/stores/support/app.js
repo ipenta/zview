@@ -1,5 +1,6 @@
 import supportService from '@/services/support'
 import { ADD_MENUS, SET_IDENTIFIER } from '@/stores/mutation-types'
+import {dynamicRouter} from '@/utils/routes'
 
 // ---------------------state----------------------------//
 const state = {
@@ -11,6 +12,7 @@ const getters = {
   identifier: state => state.identifier,
   menus: state => state.menus
 }
+
 // ----------------------mutations----------------------------//
 const mutations = {
   [SET_IDENTIFIER]: (state, identifier) => {
@@ -19,6 +21,7 @@ const mutations = {
   },
   [ADD_MENUS]: (state, menus) => {
     state.menus = menus
+    dynamicRouter(menus)
   }
 }
 // ----------------------actions-----------------------------//
@@ -26,7 +29,6 @@ const initApp = ({ commit, state }) => {
   supportService.getAuthInfo().then(result => {
     if (result.status === 'success') {
       commit('SET_IDENTIFIER', result.data.identifier)
-      console.log(result.data.menus)
       commit('ADD_MENUS', result.data.menus)
     }
   })

@@ -10,6 +10,7 @@
       </el-menu>
     </div>
     <a href="javascript://" @click="onLogout">登出</a>
+    <hr>
     <router-view/>
   </div>
 </template>

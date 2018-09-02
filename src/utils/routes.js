@@ -1,3 +1,6 @@
+import router from '@/config/router'
+// import _ from 'lodash'
+
 const generateRoutesFromMenu = function(menus = [], routes = []) {
   menus.forEach(function(item) {
     if (item.children) {
@@ -13,16 +16,13 @@ const generateRoutesFromMenu = function(menus = [], routes = []) {
   return routes
 }
 
-const generateDynamicRouters = function(dynamicRouters = []) {
-  return [{
-    path: '/',
-    component: resolve => require(['@/views/support/layout/index.vue'], resolve),
-    children: dynamicRouters
-  }, {
-    path: '*',
-    name: '404',
-    component: resolve => require(['@/views/support/404/index.vue'], resolve)
-  }]
+const dynamicRouter = function(menus) {
+  let rootRoutes = router.options.routes[0]
+  rootRoutes.children.push(...generateRoutesFromMenu(menus))
+  console.log(router.options)
+  if (rootRoutes.children.length === 0) {
+    router.addRoutes(router.options)
+  }
 }
 
-export {generateRoutesFromMenu, generateDynamicRouters}
+export { dynamicRouter }
