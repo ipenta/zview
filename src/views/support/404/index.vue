@@ -1,5 +1,5 @@
 <template lang="html">
-  <h2>user/profile</h2>
+  <h2>404</h2>
 </template>
 
 <script>

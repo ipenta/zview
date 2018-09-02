@@ -11,7 +11,7 @@
       </el-input>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="onSubmit('form')">登录</el-button>
+      <el-button type="primary" @click="onSubmit('form')" :loading="logining">登录</el-button>
     </el-form-item>
     <router-link to="register">注册</router-link>
   </el-form>
@@ -32,6 +32,7 @@ export default {
       }
     }
     return {
+      logining: false,
       form: {
         identity_type: 'email',
         identifier: '',

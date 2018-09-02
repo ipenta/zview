@@ -4,35 +4,10 @@ import store from '@/config/store'
 
 Vue.use(Router)
 
-const router = new Router()
-
-router.beforeEach((to, from, next) => {
-  if (store.getters['token'] !== null) {
-    next()
-  } else {
-    to.path === ('/auth/login' || '/auth/register') ? next() : next({
-      path: '/auth/login',
-      query: {
-        redirect: to.fullPath
-      }
-    })
-  }
-})
-
-const generateRoutesFromMenu = function(menus = [], routes = []) {
-  menus.forEach(function(item) {
-    if (item.children) {
-      generateRoutesFromMenu(item.children, routes)
-    } else if (item.path !== undefined) {
-      routes.push({
-        path: item.path,
-        name: (item.name === undefined ? item.path : item.name),
-        component: resolve => require(['@/views/app' + (item.path === '' ? '/dashboard' : item.path) + '/index.vue'], resolve)
-      })
-    }
-  })
-  return routes
-}
+const dynamicRouters = [{
+  path: '',
+  component: resolve => require(['@/views/app/dashboard/index.vue'], resolve)
+}]
 
 const defaultRoutes = [{
   path: '/auth/login',
@@ -46,9 +21,26 @@ const defaultRoutes = [{
 }, {
   path: '/',
   component: resolve => require(['@/views/support/layout/index.vue'], resolve),
-  children: generateRoutesFromMenu(store.getters.menus)
+  children: dynamicRouters
+}, {
+  path: '*',
+  name: '404',
+  component: resolve => require(['@/views/support/404/index.vue'], resolve)
 }]
 
-router.addRoutes(defaultRoutes)
+const router = new Router({ routes: defaultRoutes })
+
+router.beforeEach((to, from, next) => {
+  if (store.getters['token'] !== null) {
+    next()
+  } else {
+    to.path === ('/auth/login' || '/auth/register') ? next() : next({
+      path: '/auth/login',
+      query: {
+        redirect: to.fullPath
+      }
+    })
+  }
+})
 
 export default router

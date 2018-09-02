@@ -1,4 +1,5 @@
 import supportService from '@/services/support'
+import { ADD_MENUS, SET_IDENTIFIER } from '@/stores/mutation-types'
 
 // ---------------------state----------------------------//
 const state = {
@@ -12,11 +13,11 @@ const getters = {
 }
 // ----------------------mutations----------------------------//
 const mutations = {
-  'identifier': (state, identifier) => {
+  [SET_IDENTIFIER]: (state, identifier) => {
     localStorage.setItem('identifier', identifier)
     state.identifier = identifier
   },
-  'menus': (state, menus) => {
+  [ADD_MENUS]: (state, menus) => {
     state.menus = menus
   }
 }
@@ -24,8 +25,9 @@ const mutations = {
 const initApp = ({ commit, state }) => {
   supportService.getAuthInfo().then(result => {
     if (result.status === 'success') {
-      commit('identifier', result.data.identifier)
-      commit('menus', result.data.menus)
+      commit('SET_IDENTIFIER', result.data.identifier)
+      console.log(result.data.menus)
+      commit('ADD_MENUS', result.data.menus)
     }
   })
 }
