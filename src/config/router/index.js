@@ -1,27 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '@/config/store'
+import defaultRoutes from '@/config/router/default'
 
 Vue.use(Router)
-
-const defaultRoutes = [{
-  path: '/',
-  component: resolve => require(['@/views/support/layout/index.vue'], resolve),
-  children: []
-}, {
-  path: '/auth/login',
-  component: resolve => require(['@/views/support/login/index.vue'], resolve)
-}, {
-  path: '/auth/register',
-  component: resolve => require(['@/views/support/register/index.vue'], resolve)
-}, {
-  path: '/auth/modifypwd',
-  component: resolve => require(['@/views/support/modifypwd/index.vue'], resolve)
-}, {
-  path: '*',
-  name: '404',
-  component: resolve => require(['@/views/support/404/index.vue'], resolve)
-}]
 
 const router = new Router({ routes: defaultRoutes })
 

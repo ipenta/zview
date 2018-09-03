@@ -1,6 +1,6 @@
 import supportService from '@/services/support'
 import { ADD_MENUS, SET_IDENTIFIER } from '@/stores/mutation-types'
-import {dynamicRouter} from '@/utils/routes'
+import routeRegister from '@/config/router/register'
 
 // ---------------------state----------------------------//
 const state = {
@@ -16,12 +16,13 @@ const getters = {
 // ----------------------mutations----------------------------//
 const mutations = {
   [SET_IDENTIFIER]: (state, identifier) => {
-    localStorage.setItem('identifier', identifier)
     state.identifier = identifier
+    localStorage.setItem('identifier', identifier)
   },
   [ADD_MENUS]: (state, menus) => {
     state.menus = menus
-    dynamicRouter(menus)
+    sessionStorage.setItem('menus', JSON.stringify(menus))
+    routeRegister(menus)
   }
 }
 // ----------------------actions-----------------------------//
