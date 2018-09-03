@@ -17,6 +17,7 @@ const generateRoutesFromMenu = function(menus = [], routes = []) {
 }
 
 const routeRegister = function(menus) {
+  console.log(menus)
   if (defaultRoutes[0].children.length === 0) {
     defaultRoutes[0].children.push(...generateRoutesFromMenu(menus))
     router.addRoutes(defaultRoutes)

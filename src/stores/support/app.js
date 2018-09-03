@@ -5,7 +5,7 @@ import routeRegister from '@/config/router/register'
 // ---------------------state----------------------------//
 const state = {
   identifier: '',
-  menus: [{path: '', name: '首页', icon: 'el-icon-star-off'}]
+  menus: []
 }
 // ---------------------getters--------------------------//
 const getters = {
@@ -20,7 +20,8 @@ const mutations = {
     localStorage.setItem('identifier', identifier)
   },
   [ADD_MENUS]: (state, menus) => {
-    state.menus.push(...menus)
+    state.menus.length = 0
+    state.menus.push({path: '', name: '首页', icon: 'el-icon-star-off'}, ...menus)
     sessionStorage.setItem('menus', JSON.stringify(menus))
     routeRegister(menus)
   }
