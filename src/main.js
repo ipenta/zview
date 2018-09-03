@@ -13,6 +13,7 @@ Vue.config.productionTip = false
 if (sessionStorage.getItem('menus')) {
   routeRegister(JSON.parse(sessionStorage.getItem('menus')))
 }
+console.log(router.options)
 
 /* eslint-disable no-new */
 new Vue({

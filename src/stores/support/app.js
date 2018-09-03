@@ -5,7 +5,7 @@ import routeRegister from '@/config/router/register'
 // ---------------------state----------------------------//
 const state = {
   identifier: '',
-  menus: []
+  menus: [{path: '', name: 'dashboard'}]
 }
 // ---------------------getters--------------------------//
 const getters = {
@@ -20,7 +20,7 @@ const mutations = {
     localStorage.setItem('identifier', identifier)
   },
   [ADD_MENUS]: (state, menus) => {
-    state.menus = menus
+    state.menus.push(...menus)
     sessionStorage.setItem('menus', JSON.stringify(menus))
     routeRegister(menus)
   }

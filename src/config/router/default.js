@@ -1,7 +1,7 @@
 const defaultRoutes = [{
   path: '/',
   component: resolve => require(['@/views/support/layout/index.vue'], resolve),
-  children: []
+  children: [{ path: '', component: resolve => require(['@/views/app/dashboard/index.vue'], resolve) }]
 }, {
   path: '/auth/login',
   component: resolve => require(['@/views/support/login/index.vue'], resolve)
@@ -13,7 +13,6 @@ const defaultRoutes = [{
   component: resolve => require(['@/views/support/modifypwd/index.vue'], resolve)
 }, {
   path: '/404',
-  name: '404',
   component: resolve => require(['@/views/support/404/index.vue'], resolve)
 }, {
   path: '*',
