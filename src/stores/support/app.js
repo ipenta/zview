@@ -5,7 +5,7 @@ import routeRegister from '@/config/router/register'
 // ---------------------state----------------------------//
 const state = {
   identifier: '',
-  menus: [{path: '', name: 'dashboard'}]
+  menus: [{path: '', name: '首页', icon: 'el-icon-star-off'}]
 }
 // ---------------------getters--------------------------//
 const getters = {
