@@ -1,20 +1,23 @@
 <template lang="html">
-  <div class="layout">
-    <el-row :gutter="24">
-      <el-col :span="4">
-        <h2>layout</h2>
-        <div class="">
-          <el-menu :default-active="defaultActive" :router="true" @select="onSelected" :collapse="isCollapse">
-            <SideMenu :menus="menus"></SideMenu>
-          </el-menu>
-        </div>
-      </el-col>
-      <el-col :span="20">
-        <div class="header"><a href="javascript://" @click="onToggleSidebar">菜单</a>{{identifier}}<a href="javascript://" @click="onLogout">登出</a></div>
+  <el-container :class="[isCollapse ? 'collapse' : '']">
+    <el-aside width='200px'>
+      <el-header>
+        <h2><i class="el-icon-menu"></i> <span>layout</span></h2>
+      </el-header>
+      <el-menu :default-active="defaultActive" :router="true" @select="onSelected" :collapse="isCollapse">
+        <SideMenu :menus="menus"></SideMenu>
+      </el-menu>
+    </el-aside>
+    <el-container class="content">
+      <el-header>
+        <a href="javascript://" @click="onToggleSidebar"><i :class="[isCollapse ? 'el-icon-d-arrow-right': 'el-icon-d-arrow-left']" style="font-size:24px;margin-top:18px;"></i></a>
+        <div class="person">{{identifier}}&nbsp;&nbsp;&nbsp;<a href="javascript://" @click="onLogout">登出</a></div>
+      </el-header>
+      <el-main>
         <router-view/>
-      </el-col>
-    </el-row>
-  </div>
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
 
 <script>
@@ -52,6 +55,11 @@ export default {
 <!-- rel="stylesheet/scss" lang="scss" scoped -->
 <style rel="stylesheet/scss" lang="scss" scoped>
 .layout{height: inherit;}
-.header{height: 30px;line-height: 30px;}
-h2{height: 40px;line-height: 40px; font-size: 24px;margin: 0;}
+.collapse .el-aside {width: 65px!important;}
+.collapse h2 span {display: none;}
+.sidebar{width: 200px;position :absolute;min-height:100%;}
+.el-header{line-height: 59px;border-bottom: 1px solid #ddd;}
+h2{line-height: 60px; font-size: 24px;margin: 0;}
+.person{float: right;}
+.el-menu{height: inherit;}
 </style>
