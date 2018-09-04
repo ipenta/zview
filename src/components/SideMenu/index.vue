@@ -10,7 +10,7 @@
       </el-submenu>
       <el-menu-item v-else-if="item.path !== null" :key="item.path ? item.path: '/'" :index="item.path ? item.path: '/'">
         <i :class="item.icon"></i>
-        <span>{{item.name}}</span>
+        <span slot="title">{{item.name}}</span>
       </el-menu-item>
     </template>
   </div>
@@ -26,4 +26,7 @@ export default {
 </script>
 
 <style lang="css">
+.el-menu.el-menu--collapse .el-submenu__title span{
+  display: none;
+}
 </style>
